@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>MaxClaw — Guia Premium | Super Inteligênc[IA]</title>
+<meta name="description" content="Guia completo e prático sobre o MaxClaw — agente autônomo de IA da MiniMax. Deploy em 10 segundos, integração com WhatsApp, Telegram, Slack e Discord. Por Super Inteligênc[IA]."/>
+<meta name="author" content="Super Inteligênc[IA] — Marcílio Drummond"/>
+<meta property="og:title" content="MaxClaw — Guia Premium | Super Inteligênc[IA]"/>
+<meta property="og:description" content="Guia completo sobre o MaxClaw: agente autônomo de IA com deploy em 10 segundos. Comparativos, casos de uso, segurança e preços verificados."/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="favicon-192.png"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="theme-color" content="#030409"/>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --c-black:#030409;--c-char:#282A32;--c-char2:#1a1c24;--c-char3:#32343e;
+  --c-gold:#e2c074;--c-gold2:#c9a456;--c-gold3:rgba(226,192,116,.12);--c-gold4:rgba(226,192,116,.06);
+  --c-white:#fff;--c-body:rgba(255,255,255,.78);--c-muted:rgba(255,255,255,.42);
+  --c-border:rgba(226,192,116,.18);--c-border2:rgba(255,255,255,.07);
+  --c-green:#5eead4;--c-red:#fca5a5;--c-blue:#93c5fd;
+  --f-d:'Sora',sans-serif;--f-b:'DM Sans',sans-serif;--f-m:'JetBrains Mono',monospace;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--c-black);color:var(--c-body);font-family:var(--f-b);line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+background:radial-gradient(ellipse 80% 50% at 15% 10%,rgba(226,192,116,.045) 0%,transparent 60%),
+radial-gradient(ellipse 60% 40% at 85% 80%,rgba(226,192,116,.03) 0%,transparent 60%)}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;z-index:999;background:linear-gradient(90deg,var(--c-gold),var(--c-gold2));width:0%;box-shadow:0 0 12px rgba(226,192,116,.5)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(3,4,9,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--c-border2);padding:0 clamp(16px,4vw,48px);height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo{width:28px;height:28px}
+.nav-name{font-family:var(--f-m);font-size:11px;font-weight:700;color:var(--c-gold);letter-spacing:.1em;text-transform:uppercase}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-family:var(--f-m);font-size:10px;font-weight:500;color:var(--c-muted);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--c-gold)}
+.nav-cta{background:var(--c-gold);color:var(--c-black);font-family:var(--f-d);font-size:12px;font-weight:700;padding:8px 18px;border-radius:5px;text-decoration:none;transition:opacity .2s,transform .2s;white-space:nowrap;flex-shrink:0}
+.nav-cta:hover{opacity:.85;transform:translateY(-1px)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--c-gold);padding:4px;flex-shrink:0}
+.nav-toggle svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* LAYOUT */
+.page{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 clamp(16px,4vw,48px) 120px}
+
+/* HERO */
+.hero{padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,72px);position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-m);font-size:10px;font-weight:700;color:var(--c-muted);letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
+.eyebrow-line{width:32px;height:1px;background:var(--c-gold)}
+h1{font-family:var(--f-d);font-size:clamp(34px,6vw,60px);font-weight:800;line-height:1.08;color:var(--c-white);margin-bottom:24px;letter-spacing:-.025em}
+h1 .gold{color:var(--c-gold)}
+h1 .thin{font-weight:300;color:var(--c-muted)}
+.hero-lead{font-size:clamp(14px,2vw,16px);color:var(--c-body);max-width:580px;line-height:1.78;margin-bottom:40px;font-weight:300}
+
+/* STATS */
+.stat-strip{display:flex;flex-wrap:wrap;gap:2px;margin-bottom:40px;background:var(--c-border2);border-radius:10px;overflow:hidden;border:1px solid var(--c-border2)}
+.stat-item{flex:1;min-width:90px;padding:16px 18px;background:var(--c-char2);border-right:1px solid var(--c-border2);transition:background .2s}
+.stat-item:last-child{border-right:none}
+.stat-item:hover{background:var(--c-char)}
+.stat-num{font-family:var(--f-d);font-size:clamp(20px,2.8vw,26px);font-weight:800;color:var(--c-gold);line-height:1;margin-bottom:4px}
+.stat-lbl{font-family:var(--f-m);font-size:9px;font-weight:500;color:var(--c-muted);letter-spacing:.1em;text-transform:uppercase}
+
+/* BTNS */
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--c-gold);color:var(--c-black);font-family:var(--f-d);font-size:14px;font-weight:700;padding:13px 26px;border-radius:6px;text-decoration:none;transition:all .25s var(--ease-out);position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:transform .5s}
+.btn-primary:hover::before{transform:translateX(100%)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(226,192,116,.3)}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--c-body);font-family:var(--f-d);font-size:13px;font-weight:500;padding:12px 18px;border-radius:6px;border:1px solid var(--c-border2);text-decoration:none;transition:all .2s}
+.btn-sec:hover{border-color:var(--c-border);color:var(--c-white)}
+
+/* SECTION HEADER */
+.sec-header{padding:clamp(48px,6vw,72px) 0 0}
+.sec-sup{font-family:var(--f-m);font-size:10px;font-weight:700;color:var(--c-gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.sec-sup::after{content:'';flex:0 0 36px;height:1px;background:var(--c-gold);opacity:.5}
+h2{font-family:var(--f-d);font-size:clamp(20px,3.5vw,32px);font-weight:700;color:var(--c-white);letter-spacing:-.015em;line-height:1.2;margin-bottom:12px}
+.sec-desc{font-size:14px;color:var(--c-muted);max-width:600px;line-height:1.72;margin-bottom:32px}
+
+/* TOOLTIP */
+.term{color:var(--c-gold);border-bottom:1px dashed rgba(226,192,116,.5);cursor:help;position:relative;display:inline-block}
+.term-tip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--c-char);border:1px solid var(--c-border);border-radius:10px;padding:12px 16px;width:260px;max-width:80vw;font-family:var(--f-b);font-size:12px;color:var(--c-body);line-height:1.55;z-index:200;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .2s,transform .2s;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.term-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--c-border)}
+.term:hover .term-tip,.term:focus .term-tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+/* EXPANDABLE CARDS */
+.card-stack{display:flex;flex-direction:column;gap:8px}
+.xcard{background:var(--c-char2);border:1px solid var(--c-border2);border-radius:14px;overflow:hidden;transition:border-color .25s}
+.xcard:hover,.xcard.open{border-color:var(--c-border)}
+.xcard-head{display:flex;align-items:center;gap:16px;padding:18px 22px;cursor:pointer;user-select:none;transition:background .2s}
+.xcard-head:hover{background:rgba(255,255,255,.025)}
+.xcard-icon{flex-shrink:0;width:42px;height:42px;border-radius:9px;background:var(--c-gold4);border:1px solid var(--c-border2);display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+.xcard.open .xcard-icon{background:var(--c-gold3);border-color:var(--c-border)}
+.xcard-icon svg{width:18px;height:18px;stroke:var(--c-gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.xcard-info{flex:1;min-width:0}
+.xcard-title{font-family:var(--f-d);font-size:14px;font-weight:600;color:var(--c-white);margin-bottom:2px;line-height:1.3}
+.xcard-sub{font-size:12px;color:var(--c-muted)}
+.xcard-arrow{flex-shrink:0;width:26px;height:26px;border-radius:50%;border:1px solid var(--c-border2);display:flex;align-items:center;justify-content:center;transition:transform .35s var(--ease-out),border-color .2s;color:var(--c-muted)}
+.xcard.open .xcard-arrow{transform:rotate(180deg);border-color:var(--c-border);color:var(--c-gold)}
+.xcard-arrow svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.xcard-body{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-out),opacity .3s;opacity:0}
+.xcard.open .xcard-body{opacity:1}
+.xcard-inner{padding:0 22px 22px;border-top:1px solid var(--c-border2);padding-top:18px}
+
+/* CALLOUTS */
+.callout{display:flex;gap:13px;align-items:flex-start;border-radius:9px;padding:14px 17px;margin:14px 0;font-size:13px;line-height:1.65}
+.callout-tip{background:rgba(226,192,116,.06);border:1px solid rgba(226,192,116,.2)}
+.callout-warn{background:rgba(252,165,165,.05);border:1px solid rgba(252,165,165,.2)}
+.callout-info{background:rgba(147,197,253,.05);border:1px solid rgba(147,197,253,.18)}
+.callout-ok{background:rgba(94,234,212,.05);border:1px solid rgba(94,234,212,.18)}
+.callout-icon{flex-shrink:0;margin-top:1px}
+.callout-icon svg{width:15px;height:15px;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.callout-tip .callout-icon svg{stroke:var(--c-gold)}
+.callout-warn .callout-icon svg{stroke:var(--c-red)}
+.callout-info .callout-icon svg{stroke:var(--c-blue)}
+.callout-ok .callout-icon svg{stroke:var(--c-green)}
+.callout-text{color:var(--c-body);font-size:13px}
+.callout-text strong{color:var(--c-white)}
+
+/* FLOW DIAGRAM */
+.flow-wrap{background:var(--c-char2);border:1px solid var(--c-border2);border-radius:18px;padding:clamp(20px,4vw,36px);margin:20px 0;overflow-x:auto}
+.flow-steps{display:flex;flex-direction:column;gap:0;position:relative}
+.flow-connector{width:2px;height:32px;background:linear-gradient(to bottom,rgba(226,192,116,.6),rgba(226,192,116,.15));margin-left:28px;flex-shrink:0}
+.flow-node{display:flex;align-items:flex-start;gap:16px;position:relative}
+.flow-num{flex-shrink:0;width:56px;height:56px;border-radius:50%;background:var(--c-char);border:2px solid var(--c-border);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+.flow-num-val{font-family:var(--f-m);font-size:15px;font-weight:700;color:var(--c-gold);line-height:1}
+.flow-num-s{font-family:var(--f-m);font-size:8px;color:var(--c-muted);letter-spacing:.06em;text-transform:uppercase}
+.flow-node:hover .flow-num{background:var(--c-gold3);border-color:var(--c-border)}
+.flow-card{flex:1;background:var(--c-char);border:1px solid var(--c-border2);border-radius:10px;padding:14px 18px;margin-top:4px;transition:border-color .2s}
+.flow-node:hover .flow-card{border-color:var(--c-border)}
+.flow-card-title{font-family:var(--f-d);font-size:13px;font-weight:600;color:var(--c-white);margin-bottom:4px}
+.flow-card-desc{font-size:12.5px;color:var(--c-muted);line-height:1.6}
+.flow-badge{display:inline-block;font-family:var(--f-m);font-size:9px;font-weight:700;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.08em;margin-top:7px}
+.badge-fast{background:rgba(94,234,212,.1);color:var(--c-green)}
+.badge-mid{background:rgba(226,192,116,.1);color:var(--c-gold)}
+.badge-slow{background:rgba(252,165,165,.1);color:var(--c-red)}
+
+/* DECISION FLOW */
+.decision-wrap{display:flex;flex-direction:column;align-items:center;gap:0}
+.d-node{background:var(--c-char);border:1px solid var(--c-border2);border-radius:10px;padding:13px 20px;text-align:center;font-family:var(--f-d);font-size:13px;font-weight:500;color:var(--c-white);min-width:200px;max-width:420px;width:100%;transition:border-color .2s;line-height:1.4}
+.d-node:hover{border-color:var(--c-border)}
+.d-node-start{background:var(--c-gold3);border-color:var(--c-border);color:var(--c-gold);font-weight:700;font-size:13px}
+.d-node-end-yes{background:rgba(94,234,212,.07);border-color:rgba(94,234,212,.25);color:var(--c-green);font-weight:600;font-size:12px}
+.d-node-end-no{background:rgba(252,165,165,.07);border-color:rgba(252,165,165,.25);color:var(--c-red);font-weight:600;font-size:12px}
+.d-arrow{display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 0}
+.d-arrow-line{width:1px;height:24px;background:var(--c-border)}
+.d-arrow-head{border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--c-muted)}
+.d-arrow-label{font-family:var(--f-m);font-size:9px;color:var(--c-muted);letter-spacing:.06em}
+.d-fork{display:flex;gap:20px;justify-content:center;width:100%;flex-wrap:wrap}
+.d-fork-arm{display:flex;flex-direction:column;align-items:center;gap:0;flex:1;min-width:150px;max-width:260px}
+.d-fork-label{font-family:var(--f-m);font-size:9px;font-weight:700;padding:3px 10px;border-radius:3px;margin-bottom:5px;letter-spacing:.06em}
+.d-fork-yes{background:rgba(94,234,212,.1);color:var(--c-green)}
+.d-fork-no{background:rgba(252,165,165,.1);color:var(--c-red)}
+.d-fork-line{width:1px;height:20px;background:var(--c-border)}
+
+/* FEATURE GRID */
+.feat-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.feat-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:720px){.feat-grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.feat-grid-3,.feat-grid-2{grid-template-columns:1fr}}
+.feat-card{background:var(--c-char2);border:1px solid var(--c-border2);border-radius:14px;padding:20px;transition:all .25s var(--ease-out);position:relative;overflow:hidden}
+.feat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--c-gold3),transparent 60%);opacity:0;transition:opacity .3s}
+.feat-card:hover{border-color:var(--c-border);transform:translateY(-3px);box-shadow:0 0 40px rgba(226,192,116,.08)}
+.feat-card:hover::before{opacity:1}
+.feat-icon{width:38px;height:38px;border-radius:8px;background:var(--c-gold4);border:1px solid var(--c-border2);display:flex;align-items:center;justify-content:center;margin-bottom:12px;position:relative;z-index:1}
+.feat-icon svg{width:17px;height:17px;stroke:var(--c-gold);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.feat-title{font-family:var(--f-d);font-size:12.5px;font-weight:600;color:var(--c-white);margin-bottom:5px;position:relative;z-index:1}
+.feat-desc{font-size:11.5px;color:var(--c-muted);line-height:1.6;position:relative;z-index:1}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--c-border2)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead tr{background:var(--c-char2);border-bottom:1px solid var(--c-border)}
+th{padding:13px 16px;text-align:left;font-family:var(--f-m);font-size:9px;font-weight:700;color:var(--c-gold);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--c-border2);transition:background .15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+td{padding:12px 16px;color:var(--c-body);vertical-align:middle}
+td:first-child{color:var(--c-white);font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:4px;font-family:var(--f-m);font-size:9.5px;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.pill-g{background:rgba(94,234,212,.1);color:var(--c-green)}
+.pill-r{background:rgba(252,165,165,.1);color:var(--c-red)}
+.pill-y{background:rgba(226,192,116,.1);color:var(--c-gold)}
+.pill-b{background:rgba(147,197,253,.1);color:var(--c-blue)}
+
+/* PRICE */
+.price-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+@media(max-width:580px){.price-row{grid-template-columns:1fr}}
+.price-card{background:var(--c-char2);border:1px solid var(--c-border);border-radius:18px;padding:clamp(20px,4vw,30px);position:relative;overflow:hidden}
+.price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c-gold),transparent 70%)}
+.price-tag{font-family:var(--f-m);font-size:9px;font-weight:700;color:var(--c-gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.price-val{font-family:var(--f-d);font-size:clamp(34px,5vw,46px);font-weight:800;color:var(--c-white);line-height:1;margin-bottom:3px}
+.price-val sup{font-size:.44em;font-weight:400;vertical-align:super;color:var(--c-muted)}
+.price-period{font-size:12px;color:var(--c-muted);margin-bottom:18px}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.price-list li{font-size:12.5px;color:var(--c-body);display:flex;gap:9px;align-items:flex-start}
+.chk{flex-shrink:0;margin-top:3px}
+.chk svg{width:12px;height:12px;stroke:var(--c-gold);fill:none;stroke-width:2.5;stroke-linecap:round}
+
+/* COST COMPARE */
+.cost-compare{display:flex;flex-direction:column;gap:10px;background:var(--c-char2);border:1px solid var(--c-border2);border-radius:14px;padding:22px}
+.cost-row{display:flex;align-items:center;gap:10px}
+.cost-label{font-size:11.5px;color:var(--c-muted);width:130px;flex-shrink:0}
+.cost-bar-wrap{flex:1;background:rgba(255,255,255,.04);border-radius:3px;height:7px;overflow:hidden}
+.cost-bar{height:100%;border-radius:3px;transition:width .9s var(--ease-out);width:0%}
+.cost-val{font-family:var(--f-m);font-size:10.5px;font-weight:700;color:var(--c-white);width:48px;text-align:right;flex-shrink:0}
+
+/* USE CASES */
+.use-case{background:var(--c-char2);border:1px solid var(--c-border2);border-radius:16px;padding:clamp(18px,3vw,28px);margin-bottom:10px;transition:border-color .2s}
+.use-case:hover{border-color:var(--c-border)}
+.uc-header{display:flex;align-items:flex-start;gap:13px;margin-bottom:14px}
+.uc-num{font-family:var(--f-m);font-size:10px;font-weight:700;color:var(--c-black);background:var(--c-gold);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.uc-title{font-family:var(--f-d);font-size:15px;font-weight:700;color:var(--c-white)}
+.uc-area{font-family:var(--f-m);font-size:9px;color:var(--c-gold);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.prompt-block{background:#07080e;border:1px solid var(--c-border2);border-radius:10px;padding:16px 18px;margin-top:12px}
+.prompt-label{font-family:var(--f-m);font-size:9px;font-weight:700;color:var(--c-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+.prompt-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c-green)}
+.prompt-text{font-family:var(--f-m);font-size:11.5px;color:var(--c-body);line-height:1.7;white-space:pre-wrap}
+.prompt-text .ph{color:var(--c-gold)}
+.use-result{background:var(--c-char);border:1px solid var(--c-border2);border-radius:9px;padding:13px 16px;margin-top:9px}
+.use-result-label{font-family:var(--f-m);font-size:9px;font-weight:700;color:var(--c-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.use-result-text{font-size:12.5px;color:var(--c-body);line-height:1.65}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--c-border2);padding:18px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;align-items:flex-start;gap:13px;cursor:pointer;user-select:none}
+.faq-q-mark{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--c-gold3);border:1px solid var(--c-border);display:flex;align-items:center;justify-content:center;font-family:var(--f-m);font-size:10px;font-weight:700;color:var(--c-gold);margin-top:2px}
+.faq-q-text{font-family:var(--f-d);font-size:13.5px;font-weight:600;color:var(--c-white);flex:1;line-height:1.4;padding-top:3px}
+.faq-arrow{flex-shrink:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:var(--c-muted);transition:transform .3s var(--ease-out);margin-top:3px}
+.faq-arrow svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:var(--c-gold)}
+.faq-a{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s var(--ease-out),opacity .3s}
+.faq-item.open .faq-a{opacity:1}
+.faq-a-inner{padding-top:13px;padding-left:37px;font-size:13px;color:var(--c-body);line-height:1.72}
+
+/* CHANNELS */
+.channel-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.channel-pill{display:flex;align-items:center;gap:9px;background:var(--c-char);border:1px solid var(--c-border2);border-radius:9px;padding:10px 15px;font-family:var(--f-d);font-size:12.5px;font-weight:500;color:var(--c-white);transition:all .2s}
+.channel-pill:hover{border-color:var(--c-border);transform:translateY(-1px)}
+.ch-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ch-sub{font-size:10px;color:var(--c-muted);display:block;margin-top:1px}
+
+/* CTA FINAL */
+.cta-final{background:var(--c-char2);border:1px solid var(--c-border);border-radius:20px;padding:clamp(32px,5vw,52px);text-align:center;position:relative;overflow:hidden;margin-top:clamp(48px,6vw,72px)}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(226,192,116,.07) 0%,transparent 70%);pointer-events:none}
+.cta-final-sup{font-family:var(--f-m);font-size:10px;font-weight:700;color:var(--c-gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
+.cta-final h3{font-family:var(--f-d);font-size:clamp(22px,4vw,36px);font-weight:800;color:var(--c-white);line-height:1.15;margin-bottom:14px;letter-spacing:-.02em;position:relative;z-index:1}
+.cta-final h3 span{color:var(--c-gold)}
+.cta-final p{font-size:14px;color:var(--c-muted);max-width:480px;margin:0 auto 28px;line-height:1.7;position:relative;z-index:1}
+.btn-cta-final{display:inline-flex;align-items:center;gap:12px;background:var(--c-gold);color:var(--c-black);font-family:var(--f-d);font-size:15px;font-weight:800;padding:16px 34px;border-radius:8px;text-decoration:none;transition:all .25s var(--ease-out);position:relative;z-index:1;box-shadow:0 0 40px rgba(226,192,116,.2)}
+.btn-cta-final:hover{opacity:.9;transform:translateY(-3px);box-shadow:0 12px 40px rgba(226,192,116,.35)}
+.btn-cta-final svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+.cta-note{font-family:var(--f-m);font-size:10px;color:var(--c-muted);margin-top:14px;position:relative;z-index:1}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--c-border2);margin:clamp(40px,5vw,60px) 0 0}
+
+/* FOOTER */
+footer{margin-top:clamp(48px,6vw,80px);padding:28px 0 0;border-top:1px solid var(--c-border2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.f-brand{font-family:var(--f-m);font-size:10px;color:var(--c-muted);letter-spacing:.08em}
+.f-brand strong{color:var(--c-gold)}
+.f-links{display:flex;gap:18px;flex-wrap:wrap}
+.f-links a{font-size:11px;color:var(--c-muted);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--c-gold)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* INLINE CODE */
+code{font-family:var(--f-m);font-size:11px;background:rgba(226,192,116,.08);border:1px solid rgba(226,192,116,.14);border-radius:3px;padding:1px 5px;color:var(--c-gold)}
+
+/* TEXT UTILS */
+p{font-size:13.5px;color:var(--c-body);margin-bottom:11px}
+p:last-child{margin-bottom:0}
+strong{color:var(--c-white);font-weight:600}
+ul.bl{padding-left:16px;display:flex;flex-direction:column;gap:5px;margin:10px 0}
+ul.bl li{font-size:13px;color:var(--c-body);line-height:1.65}
+
+/* RESPONSIVE NAV */
+@media(max-width:720px){
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;bottom:0;background:rgba(3,4,9,.97);backdrop-filter:blur(20px);padding:32px clamp(16px,4vw,48px);gap:24px;z-index:99}
+  .nav-links.open li a{font-size:16px;color:var(--c-body)}
+  .nav-cta{display:none}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <svg class="nav-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L90 27.5 L90 72.5 L50 95 L10 72.5 L10 27.5 Z" fill="none" stroke="#e2c074" stroke-width="6"/>
+      <path d="M50 20 L75 34 L75 66 L50 80 L25 66 L25 34 Z" fill="none" stroke="#e2c074" stroke-width="5"/>
+      <path d="M50 35 L64 43 L64 57 L50 65 L36 57 L36 43 Z" fill="none" stroke="#e2c074" stroke-width="4"/>
+    </svg>
+    <span class="nav-name">Super Inteligênc[IA]</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#conceitos">O que é</a></li>
+    <li><a href="#deploy">Deploy</a></li>
+    <li><a href="#usecases">Casos de uso</a></li>
+    <li><a href="#seguranca">Segurança</a></li>
+    <li><a href="#comparativo">Comparativo</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+  </ul>
+  <a href="https://agent.minimax.io/max-claw" target="_blank" class="nav-cta">Acessar MaxClaw</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<div class="page">
+
+<!-- ════════ HERO ════════ -->
+<header class="hero">
+  <div class="eyebrow"><span class="eyebrow-line"></span>Guia Premium · MaxClaw · Super Inteligênc[IA]</div>
+  <h1>
+    Seu agente Autônomo de<br/>
+    <span class="gold">Inteligência Artificial</span><br/>
+    <span class="thin">funcionando em 10 segundos.</span>
+  </h1>
+  <p class="hero-lead">
+    O <strong>MaxClaw</strong> é uma ferramenta que permite criar um agente de IA personalizado — sem precisar instalar programas, contratar um técnico ou pagar por servidores. Você clica em um botão e o agente já está funcionando, respondendo no WhatsApp, Telegram, Slack ou Discord. Do jeito que um negócio moderno precisa.
+  </p>
+
+  <div class="stat-strip reveal">
+    <div class="stat-item"><div class="stat-num">10s</div><div class="stat-lbl">Para estar no ar</div></div>
+    <div class="stat-item"><div class="stat-num">$0</div><div class="stat-lbl">Servidores ou infra</div></div>
+    <div class="stat-item"><div class="stat-num">229B</div><div class="stat-lbl">Parâmetros de IA</div></div>
+    <div class="stat-item"><div class="stat-num">200K</div><div class="stat-lbl">Tokens de memória</div></div>
+    <div class="stat-item"><div class="stat-num">21×</div><div class="stat-lbl">Mais barato que Opus 4.6</div></div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="https://agent.minimax.io/max-claw" target="_blank" class="btn-primary">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Acessar MaxClaw agora
+    </a>
+    <a href="#deploy" class="btn-sec">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+      Ver o guia passo a passo
+    </a>
+  </div>
+</header>
+
+<!-- ════════ CONCEITOS ════════ -->
+<div class="divider"></div>
+<section id="conceitos" class="sec-header reveal">
+  <div class="sec-sup">Fundamentos</div>
+  <h2>Antes de tudo: o que cada palavra significa</h2>
+  <p class="sec-desc">Sem jargão de TI. Cada conceito técnico explicado do zero — porque entender bem é o primeiro passo para usar bem.</p>
+
+  <div class="card-stack">
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">O que é o MaxClaw?</div><div class="xcard-sub">O produto que você vai usar — explicado sem rodeios</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Para ter um agente de IA disponível 24 horas por dia no seu negócio, o caminho tradicional exige contratar um programador, alugar um servidor (um computador remoto ligado à internet), configurar tudo isso manualmente e ainda manter funcionando mês a mês.</p>
+        <p>O <strong>MaxClaw</strong> elimina completamente esse processo. É um serviço já pronto, hospedado nos computadores da empresa MiniMax. Você cria uma conta, clica em um botão chamado <strong>"Deploy Now"</strong> (que significa "Colocar em funcionamento agora"), e em 10 segundos seu agente de IA já está ativo — conectado ao WhatsApp ou Telegram, pronto para responder.</p>
+        <div class="callout callout-tip">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="callout-text"><strong>Analogia simples:</strong> É como a diferença entre comprar um carro pronto (MaxClaw) e aprender a montar um motor do zero (instalar tudo manualmente). Para a maioria dos profissionais, o carro é o caminho certo.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">O que é "deploy"? E o que é o OpenClaw?</div><div class="xcard-sub">Dois termos técnicos que aparecem o tempo todo — aqui explicados de vez</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p><strong>Deploy</strong> (pronuncia-se "di-plói") é uma palavra inglesa do mundo da tecnologia que significa simplesmente <em>"colocar algo em funcionamento na internet"</em>. Quando você faz o deploy de um sistema, está ativando ele para que outras pessoas ou serviços possam usar. No contexto do MaxClaw, fazer o deploy significa clicar em um botão e o seu agente de IA entra no ar — disponível para responder nos seus canais de comunicação.</p>
+        <p>Já o <strong>OpenClaw</strong> é o motor que faz o MaxClaw funcionar por dentro. Ele é <span class="term">open-source<span class="term-tip">Software de código aberto: o código interno do programa é público, qualquer desenvolvedor pode ver, estudar e modificar. É o oposto de software proprietário, cujo código é secreto.</span></span> — ou seja, qualquer desenvolvedor pode baixar e criar versões próprias. O MaxClaw é basicamente o OpenClaw já instalado e hospedado pela MiniMax. Você não precisa nem saber que ele existe para usar.</p>
+        <div class="callout callout-ok">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="callout-text">Desde seu lançamento (início de 2026), o OpenClaw ultrapassou <strong>100.000 estrelas</strong> no GitHub — que é como curtidas de desenvolvedores do mundo todo. É um indicador forte de que o projeto é sólido e confiável.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">O que é o modelo de IA MiniMax M2.5?</div><div class="xcard-sub">O "cérebro" que processa e gera todas as respostas</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Um <span class="term">modelo de linguagem<span class="term-tip">Um sistema de IA treinado com bilhões de textos que aprendeu a entender e gerar linguagem humana. Exemplos atuais: GPT-5.2 (OpenAI), Claude Opus 4.6 (Anthropic), Gemini 3.1 Pro (Google) e M2.5 (MiniMax).</span></span> é o cérebro do agente — quem lê a sua pergunta, raciocina e gera a resposta.</p>
+        <p>O <strong>M2.5</strong> usa uma arquitetura chamada <span class="term">Mixture-of-Experts (MoE)<span class="term-tip">Em vez de usar todo o modelo para cada resposta, o MoE divide internamente em "especialistas" e aciona apenas os mais relevantes para cada pergunta. Resultado: muito mais rápido e barato, sem sacrificar qualidade nas respostas.</span></span>: tem 229 bilhões de parâmetros (unidades de conhecimento treinado) no total, mas ativa apenas 10 bilhões por resposta. Isso o torna extremamente rápido e econômico.</p>
+        <div class="callout callout-ok">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="callout-text">Em benchmarks independentes como o SWE-Bench Verified, o M2.5 alcança <strong>80,2%</strong> — próximo ao Claude Opus 4.6 (80,8%) e ao Gemini 3.1 Pro (80,6%). Mas custa <strong>1/20 do Opus</strong> e <strong>1/10 do Gemini</strong> por token de saída. Para tarefas de negócios do dia a dia, a diferença de qualidade é imperceptível — a de preço, não.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">O que são "Experts" e "Subagentes"?</div><div class="xcard-sub">Especialistas pré-prontos e equipes de IA trabalhando para você</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p><strong>Experts</strong> são agentes de IA já pré-configurados para tarefas específicas — como um funcionário que já passou por um treinamento completo antes de chegar até você. O MaxClaw oferece mais de 10.000 Experts prontos: pesquisa de mercado, redação de contratos, atendimento ao cliente, análise financeira, e muito mais. Você não cria do zero — escolhe, ajusta e usa.</p>
+        <p><strong>Subagentes</strong> são agentes especializados que trabalham <em>dentro</em> do seu agente principal. Enquanto seu agente principal recebe o pedido do cliente, ele pode acionar vários subagentes para trabalhar em paralelo: um pesquisa, outro redige, outro revisa. Como um sócio que coordena uma equipe especializada — ao mesmo tempo.</p>
+        <div class="callout callout-tip">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="callout-text"><strong>Analogia:</strong> O seu agente principal é o gerente. Os Experts e subagentes são a equipe especializada que ele aciona conforme a tarefa. Você só dá a instrução ao gerente.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">O que significa um agente "sempre ativo" (always-on)?</div><div class="xcard-sub">Disponível 24 horas sem você precisar deixar nada ligado</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Chatbots de IA comuns (como o ChatGPT no navegador) funcionam assim: você abre, faz uma pergunta, ele responde, você fecha — e na próxima vez, ele não lembra de nada. Cada conversa começa do zero. Isso é chamado de sistema <span class="term">sem memória persistente<span class="term-tip">Sistemas sem estado (stateless): não guardam informações entre uma sessão e outra. Como falar com alguém com amnésia total após cada conversa — você precisa se apresentar de novo todas as vezes.</span></span>.</p>
+        <p>O MaxClaw opera de forma diferente: o agente <strong>fica rodando continuamente</strong> nos servidores da MiniMax, com memória de até 200.000 tokens (equivalente a um livro inteiro de conteúdo). Você pode retomar uma tarefa 3 dias depois e ele lembrará exatamente onde parou.</p>
+        <div class="callout callout-ok">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="callout-text">Você <strong>não precisa deixar seu computador ligado</strong>. O agente vive nos servidores da MiniMax — funciona às 3h da manhã, nos finais de semana, enquanto você está viajando ou em reunião.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ DEPLOY ════════ -->
+<div class="divider"></div>
+<section id="deploy" class="sec-header reveal">
+  <div class="sec-sup">Implementação</div>
+  <h2>Como colocar em funcionamento em 10 segundos</h2>
+  <p class="sec-desc">Nenhum passo exige conhecimento técnico. Se você já usou um aplicativo de smartphone, você consegue fazer isso.</p>
+
+  <div class="card-stack">
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Primeiro: MaxClaw Cloud ou instalação própria?</div><div class="xcard-sub">Fluxo de decisão visual para escolher o caminho certo</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <div class="decision-wrap">
+          <div class="d-node d-node-start">Quero criar um agente de IA para o meu negócio</div>
+          <div class="d-arrow"><div class="d-arrow-line"></div><div class="d-arrow-head"></div></div>
+          <div class="d-node">Tenho equipe técnica de TI ou dados muito sensíveis que não podem sair do meu servidor?</div>
+          <div class="d-arrow"><div class="d-arrow-label">avalie</div><div class="d-arrow-line"></div><div class="d-arrow-head"></div></div>
+          <div class="d-fork">
+            <div class="d-fork-arm">
+              <div class="d-fork-label d-fork-no">Sim, tenho TI + dados críticos</div>
+              <div class="d-fork-line"></div>
+              <div class="d-node d-node-end-no">OpenClaw instalado no<br/>seu próprio servidor<br/><small>Controle total dos dados</small></div>
+            </div>
+            <div class="d-fork-arm">
+              <div class="d-fork-label d-fork-yes">Não — quero praticidade</div>
+              <div class="d-fork-line"></div>
+              <div class="d-node d-node-end-yes">MaxClaw Cloud<br/>Deploy em 10 segundos<br/><small>agent.minimax.io/max-claw</small></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Passo 01 · Criar conta gratuita</div><div class="xcard-sub">~2 min — Sem cartão de crédito · 200 créditos/dia grátis</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Acesse <strong>agent.minimax.io</strong> pelo navegador (computador, tablet ou celular). Clique em "Sign Up" — que significa "criar conta" — ou entre diretamente com sua conta Google. Ao fazer login, você já recebe 200 créditos gratuitos por dia automaticamente, sem precisar inserir cartão de crédito.</p>
+        <span class="flow-badge badge-fast" style="margin-top:8px">Gratuito para começar</span>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Passo 02 · Encontrar o MaxClaw no painel</div><div class="xcard-sub">~5 seg — 1 clique no menu lateral</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Após fazer login, você verá o painel principal do MiniMax Agent. Procure <strong>"MaxClaw"</strong> no menu lateral esquerdo ou na área central. Ele é identificado com o ícone de uma garra (claw = garra em inglês). Clique para abrir.</p>
+        <span class="flow-badge badge-fast" style="margin-top:8px">1 clique no menu</span>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Passo 03 · Clicar em "Deploy Now"</div><div class="xcard-sub">~3 seg — Um clique e seu agente está no ar</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Você verá um botão destacado com o texto <strong>"Deploy Now"</strong> — traduzindo literalmente: "Implantar agora". Um único clique. A MiniMax automaticamente provisiona (prepara e liga) um ambiente completo na nuvem para você: servidor, banco de memória, sistema de ferramentas. Você não seleciona nada, não configura nada.</p>
+        <div class="callout callout-ok" style="margin-top:10px">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="callout-text">Neste momento, seu agente já está <strong>vivo e funcionando</strong>. Sem escolher servidor, sem instalar Docker (um tipo de software de containers), sem configurar nada manualmente.</div>
+        </div>
+        <span class="flow-badge badge-fast" style="margin-top:8px">Agente no ar</span>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Passo 04 · Conectar ao canal de comunicação</div><div class="xcard-sub">~90 seg — Telegram, WhatsApp, Slack ou Discord</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Escolha onde seu agente vai "morar" e responder. O <strong>Telegram</strong> é o mais rápido: acesse <code>@BotFather</code> no Telegram, envie o comando <code>/newbot</code>, dê um nome ao bot, copie o token (uma chave de acesso longa) gerado e cole no campo indicado no MaxClaw. Feito — seu agente já responde no Telegram.</p>
+        <div class="channel-grid" style="margin-top:12px">
+          <div class="channel-pill"><span class="ch-dot" style="background:#229ED9"></span><div><strong>Telegram</strong><span class="ch-sub">Mais rápido de conectar</span></div></div>
+          <div class="channel-pill"><span class="ch-dot" style="background:#25D366"></span><div><strong>WhatsApp</strong><span class="ch-sub">Mais usado no Brasil</span></div></div>
+          <div class="channel-pill"><span class="ch-dot" style="background:#4A154B"></span><div><strong>Slack</strong><span class="ch-sub">Para equipes internas</span></div></div>
+          <div class="channel-pill"><span class="ch-dot" style="background:#5865F2"></span><div><strong>Discord</strong><span class="ch-sub">Comunidades e equipes</span></div></div>
+        </div>
+        <span class="flow-badge badge-mid" style="margin-top:8px">~90 segundos</span>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Passo 05 · Definir identidade e instruções</div><div class="xcard-sub">~5 min — Nome, personalidade e regras do seu agente</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Agora é só personalizar: defina o <strong>nome</strong> (ex.: "Ana — Agente do Escritório Drummond"), a <strong>personalidade</strong> (tom formal, proativo, conciso ou amigável) e as <strong>instruções base</strong> — o que ele deve e não deve fazer. Você também pode adicionar Experts especializados para capacidades extras. Tudo via formulário, sem código.</p>
+        <span class="flow-badge badge-mid" style="margin-top:8px">Configuração inicial</span>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ FEATURES ════════ -->
+<div class="divider"></div>
+<section class="sec-header reveal">
+  <div class="sec-sup">Capacidades</div>
+  <h2>O que o MaxClaw entrega nativamente</h2>
+  <p class="sec-desc">Tudo incluso no plano. Sem módulos extras, sem configurações avançadas para ativar.</p>
+
+  <div class="card-stack">
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Memória de longo prazo</div><div class="xcard-sub">200.000 tokens de contexto — equivalente a um livro inteiro</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O MaxClaw retém até 200.000 tokens de contexto — o equivalente a um livro inteiro. Isso significa que ele lembra de conversas de semanas atrás sem você repetir nada. Ideal para projetos longos, atendimentos recorrentes e fluxos que exigem continuidade.</p>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Busca na web em tempo real</div><div class="xcard-sub">Pesquisa na internet com fontes atualizadas</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Diferente de chatbots que só sabem o que foi treinado, o MaxClaw pesquisa na internet em tempo real, traz informações atualizadas e cita fontes. Perfeito para pesquisa de jurisprudência, monitoramento de legislação, análise de mercado e qualquer tarefa que exija dados recentes.</p>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Execução de código e cálculos</div><div class="xcard-sub">Calcula, analisa planilhas e gera gráficos dentro do chat</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O agente executa código diretamente: calcula valores, analisa planilhas, gera gráficos e processa dados — tudo dentro do chat, sem abrir outro programa. Útil para cálculos previdenciários, análise financeira, simulações tributárias e qualquer tarefa que envolva números.</p>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Leitura de documentos</div><div class="xcard-sub">Envie PDFs, contratos e relatórios — o agente lê e analisa</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Envie PDFs, contratos, relatórios e o agente lê, resume, extrai dados e responde perguntas sobre o conteúdo. Economiza horas de leitura manual — especialmente útil para análise de contratos longos, revisão de peças processuais e extração de dados de documentos.</p>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Multi-agente e subagentes</div><div class="xcard-sub">Agente principal aciona especialistas em paralelo</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Seu agente principal aciona especialistas para trabalhar em paralelo — um pesquisa, outro redige, outro revisa. Automaticamente. Isso acelera tarefas complexas que normalmente exigiriam múltiplas etapas sequenciais, como pesquisar jurisprudência, redigir uma peça e revisar a fundamentação.</p>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Desktop Cowork</div><div class="xcard-sub">Acessa arquivos, e-mail e calendário localmente no seu computador</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O modo Desktop Cowork permite que o agente acesse arquivos do seu computador, e-mail e calendário localmente no macOS e Windows — sem enviar nada para servidores externos. Ideal para quem trabalha com documentos sensíveis e quer a potência do agente sem transferir dados para a nuvem.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CASOS DE USO ════════ -->
+<div class="divider"></div>
+<section id="usecases" class="sec-header reveal">
+  <div class="sec-sup">Aplicação Prática</div>
+  <h2>Como usar no seu negócio</h2>
+  <p class="sec-desc">Casos de uso reais com exemplos de comandos prontos para copiar e adaptar. Selecione a área mais próxima da sua:</p>
+
+  <div class="card-stack">
+
+  <!-- ADVOCACIA -->
+  <div class="sec-sup" style="font-size:9px;margin-bottom:6px;margin-top:8px">Segmento · Advocacia e Jurídico</div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">01 · Triagem e qualificação de clientes</div><div class="xcard-sub">Atendimento · Todos os ramos do Direito</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O agente recebe a mensagem inicial do cliente, identifica a área jurídica, coleta informações básicas (documentos, datas, valor envolvido) e encaminha para o advogado responsável já com um resumo estruturado — economizando 15 a 30 minutos por atendimento.</p>
+        <div class="prompt-block">
+          <div class="prompt-label">Instrução base para o agente</div>
+          <div class="prompt-text">Você é o agente de triagem do escritório <span class="ph">[Nome do Escritório]</span>.
+
+Quando um novo cliente enviar mensagem:
+1. Apresente-se e pergunte qual é a situação jurídica dele em linhas gerais
+2. Identifique a área do direito (consumidor, trabalhista, família, previdenciário)
+3. Colete: nome completo, CPF, como ficou sabendo do escritório, urgência (sim/não)
+4. Se urgente: avise que o advogado <span class="ph">[nome]</span> entrará em contato em breve
+5. Se não urgente: informe que retornaremos em até 24h
+
+Tom: profissional e acolhedor. Nunca dê opinião jurídica — apenas colete dados.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">02 · Pesquisa de jurisprudência sob demanda</div><div class="xcard-sub">Pesquisa · STJ · STF · TJs</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Descreva o caso e o agente busca jurisprudência relevante, traz acórdãos com ementas resumidas e analisa qual linha argumentativa é mais sólida.</p>
+        <div class="prompt-block">
+          <div class="prompt-label">Exemplo de comando</div>
+          <div class="prompt-text">Pesquise jurisprudência recente sobre revisão de benefício previdenciário
+por incapacidade quando o segurado não cumpriu carência no RGPS.
+
+Tribunais: STJ e TRFs da 1ª e 4ª Região.
+Entregue: 3 acórdãos favoráveis com ementa resumida, data e número.</div>
+        </div>
+        <div class="use-result">
+          <div class="use-result-label">Resultado esperado</div>
+          <div class="use-result-text">Acórdãos identificados com ementas resumidas, links e análise da linha argumentativa mais sólida. Horas de pesquisa manual viram minutos.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">03 · Rascunho de peças e análise de contratos</div><div class="xcard-sub">Petições · Contestações · Contratos</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Descreva o caso e peça o rascunho de uma peça processual. O agente gera a estrutura com fundamentação legal — você revisa, ajusta e assina. Para contratos, envie o PDF e peça análise de cláusulas problemáticas.</p>
+        <div class="callout callout-warn">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="callout-text"><strong>Responsabilidade técnica:</strong> O agente gera rascunhos como ponto de partida. A revisão final e assinatura de qualquer peça é sempre responsabilidade do advogado habilitado.</div>
+        </div>
+      </div></div>
+    </div>
+
+  <!-- CONTABILIDADE -->
+  <div class="sec-sup" style="font-size:9px;margin-bottom:6px;margin-top:20px">Segmento · Contabilidade e Finanças</div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">04 · Atendimento e triagem de clientes contábeis</div><div class="xcard-sub">Atendimento · Rotinas contábeis · Fiscal</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O agente recebe clientes no WhatsApp, coleta o tipo de serviço necessário (abertura de empresa, declaração de IR, parcelamento de dívida, emissão de certidão), verifica documentos faltantes e agenda com o contador responsável.</p>
+        <div class="prompt-block">
+          <div class="prompt-label">Exemplo de comando</div>
+          <div class="prompt-text">Você é o agente do escritório contábil <span class="ph">[Nome]</span>.
+
+Quando um cliente entrar em contato:
+1. Pergunte qual serviço ele precisa (IR, abertura de empresa, BPO, MEI, outro)
+2. Para declaração de IR: informe os documentos necessários e o prazo
+3. Para abertura de empresa: pergunte tipo de atividade, sócios, capital social
+4. Agende com o contador disponível ou informe que retornamos em até 2h úteis
+
+Nunca prometa prazo de entrega — isso é definido pelo contador humano.</div>
+        </div>
+        <div class="use-result">
+          <div class="use-result-label">Resultado esperado</div>
+          <div class="use-result-text">O contador recebe clientes pré-triados com documentos listados e serviço identificado. Reduz drasticamente o tempo de onboarding de cada cliente.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">05 · Monitoramento diário de mudanças tributárias</div><div class="xcard-sub">Atualização fiscal · Legislação · SEFAZ</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Configure o agente para enviar todo dia um briefing com novidades tributárias relevantes — alterações de alíquotas, novas obrigações acessórias, decisões do CARF, publicações no DOU.</p>
+        <div class="prompt-block">
+          <div class="prompt-label">Instrução com agendamento diário</div>
+          <div class="prompt-text">Todo dia às 7h, pesquise e envie um briefing com:
+
+1. Alterações tributárias federais publicadas no DOU nas últimas 24h
+2. Decisões relevantes do CARF sobre IR pessoa física e jurídica
+3. Novidades de obrigações acessórias (SPED, DCTF, EFD)
+
+Formato: título + 2 linhas de resumo + link. Máximo 6 itens. Tom direto.</div>
+        </div>
+      </div></div>
+    </div>
+
+  <!-- IMÓVEIS -->
+  <div class="sec-sup" style="font-size:9px;margin-bottom:6px;margin-top:20px">Segmento · Imóveis e Corretagem</div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">06 · Qualificação de leads e agendamento de visitas</div><div class="xcard-sub">Atendimento · Captação · CRM</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O agente responde interessados no WhatsApp, entende o perfil de compra (tipo de imóvel, localização, faixa de preço, financiamento), filtra leads qualificados e agenda visitas com o corretor.</p>
+        <div class="prompt-block">
+          <div class="prompt-label">Exemplo de instrução base</div>
+          <div class="prompt-text">Você é o agente da imobiliária <span class="ph">[Nome]</span>.
+
+Quando alguém perguntar sobre imóveis:
+1. Pergunte: compra ou aluguel? Residencial ou comercial?
+2. Faixa de preço desejada e localização preferida
+3. Número de dormitórios e se precisa de financiamento
+4. Com base nas respostas, indique 2-3 opções do portfólio e agende visita
+
+Para financiamento: informe que temos parceria com <span class="ph">[banco]</span> e colete contato.</div>
+        </div>
+        <div class="use-result">
+          <div class="use-result-label">Resultado esperado</div>
+          <div class="use-result-text">O corretor recebe apenas leads já qualificados — com perfil definido, interesse real e horário de visita agendado. Zero tempo perdido com perguntas genéricas.</div>
+        </div>
+      </div></div>
+    </div>
+
+  <!-- SAÚDE -->
+  <div class="sec-sup" style="font-size:9px;margin-bottom:6px;margin-top:20px">Segmento · Saúde · Clínicas e Consultórios</div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">07 · Agendamento, triagem e lembretes automáticos</div><div class="xcard-sub">Recepção · Agendamento · Retenção</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O agente atende pacientes no WhatsApp, agenda consultas conforme agenda disponível, coleta queixa principal para triagem inicial, envia lembrete 24h antes da consulta e confirma presença — sem sobrecarregar a recepção.</p>
+        <div class="prompt-block">
+          <div class="prompt-label">Exemplo de instrução base</div>
+          <div class="prompt-text">Você é o agente da clínica <span class="ph">[Nome]</span>.
+
+Fluxo de agendamento:
+1. Pergunte se é consulta de retorno ou primeira vez
+2. Primeira vez: colete nome, data de nascimento, convênio (se houver) e queixa principal
+3. Verifique os horários disponíveis do Dr(a). <span class="ph">[Nome]</span> e ofereça 2 opções
+4. Confirme o agendamento e envie endereço + orientações
+5. 24h antes da consulta: envie lembrete automático e peça confirmação
+
+NUNCA dê orientações médicas, diagnósticos ou prescrições.</div>
+        </div>
+        <div class="callout callout-warn">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="callout-text"><strong>Importante para saúde:</strong> Configure explicitamente que o agente nunca deve dar orientações médicas, diagnósticos ou sugestões de medicamentos — apenas atendimento administrativo e logístico.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ════════ COMPARATIVO ════════ -->
+<div class="divider"></div>
+<section class="sec-header reveal">
+  <div class="sec-sup">Comparativo</div>
+  <h2>MaxClaw vs instalação própria do OpenClaw</h2>
+  <p class="sec-desc">A escolha certa depende do seu perfil e prioridades.</p>
+
+  <div class="card-stack">
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M21 3l-7 7"/><path d="M3 3l7 7"/><path d="M3 21l7-7"/><path d="M21 21l-7-7"/><path d="M16 21h5v-5"/><path d="M8 21H3v-5"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Tabela comparativa completa — 9 critérios</div><div class="xcard-sub">MaxClaw Cloud vs OpenClaw auto-hospedado lado a lado</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Critério</th><th>MaxClaw (Nuvem)</th><th>OpenClaw Instalado</th></tr></thead>
+            <tbody>
+              <tr><td>Tempo até funcionar</td><td><span class="pill pill-g">10 segundos</span></td><td><span class="pill pill-r">30 a 120 minutos</span></td></tr>
+              <tr><td>Conhecimento técnico</td><td><span class="pill pill-g">Nenhum necessário</span></td><td><span class="pill pill-r">Node.js, Docker, terminal</span></td></tr>
+              <tr><td>Manutenção contínua</td><td><span class="pill pill-g">Zero — MiniMax cuida</span></td><td><span class="pill pill-r">Sua responsabilidade</span></td></tr>
+              <tr><td>Modelo de IA</td><td><span class="pill pill-y">Apenas MiniMax M2.5</span></td><td><span class="pill pill-g">Qualquer modelo disponível</span></td></tr>
+              <tr><td>Localização dos dados</td><td><span class="pill pill-y">Servidores da MiniMax</span></td><td><span class="pill pill-g">Seu servidor, controle total</span></td></tr>
+              <tr><td>Updates automáticos</td><td><span class="pill pill-g">Sim, automático</span></td><td><span class="pill pill-r">Manual, você atualiza</span></td></tr>
+              <tr><td>Custo de infraestrutura</td><td><span class="pill pill-g">Incluso no plano</span></td><td><span class="pill pill-r">Servidor + manutenção à parte</span></td></tr>
+              <tr><td>LGPD para dados sensíveis</td><td><span class="pill pill-y">Avaliar caso a caso</span></td><td><span class="pill pill-g">Mais adequado</span></td></tr>
+              <tr><td>Ideal para</td><td>Negócios que querem agilidade</td><td>Empresas com TI próprio</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ PREÇO ════════ -->
+<div class="divider"></div>
+<section class="sec-header reveal">
+  <div class="sec-sup">Investimento</div>
+  <h2>Quanto custa</h2>
+
+  <div class="price-row">
+    <div class="price-card">
+      <div class="price-tag">MiniMax Agent — Plano com MaxClaw</div>
+      <div class="price-val"><sup>$</sup>19</div>
+      <div class="price-period">por mês · acesso completo</div>
+      <ul class="price-list">
+        <li><span class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>MaxClaw sempre ativo em nuvem gerenciada</li>
+        <li><span class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Modelo M2.5 sem cobrança extra por uso</li>
+        <li><span class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>200 créditos gratuitos diários no login</li>
+        <li><span class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>10.000+ Experts pré-configurados</li>
+        <li><span class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Telegram, WhatsApp, Slack, Discord</li>
+        <li><span class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Desktop Cowork — macOS e Windows</li>
+        <li><span class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Memória persistente de longo prazo</li>
+      </ul>
+      <a href="https://agent.minimax.io/max-claw" target="_blank" class="btn-primary" style="width:100%;justify-content:center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Começar agora
+      </a>
+    </div>
+
+    <div class="cost-compare">
+      <div class="sec-sup" style="font-size:9px;margin-bottom:12px">Custo por 1M tokens de saída — preços oficiais fev/2026</div>
+      <div class="cost-row">
+        <div class="cost-label">MiniMax M2.5</div>
+        <div class="cost-bar-wrap"><div class="cost-bar" data-width="5" style="background:var(--c-green)"></div></div>
+        <div class="cost-val" style="color:var(--c-green)">$1,20</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">Claude Haiku 4.5</div>
+        <div class="cost-bar-wrap"><div class="cost-bar" data-width="20" style="background:var(--c-blue)"></div></div>
+        <div class="cost-val" style="color:var(--c-blue)">$5,00</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">Gemini 3.1 Pro</div>
+        <div class="cost-bar-wrap"><div class="cost-bar" data-width="48" style="background:#34d399"></div></div>
+        <div class="cost-val" style="color:#34d399">$12,00</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">GPT-5.2</div>
+        <div class="cost-bar-wrap"><div class="cost-bar" data-width="56" style="background:#a78bfa"></div></div>
+        <div class="cost-val" style="color:#a78bfa">$14,00</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">Claude Sonnet 4.6</div>
+        <div class="cost-bar-wrap"><div class="cost-bar" data-width="60" style="background:var(--c-blue)"></div></div>
+        <div class="cost-val" style="color:var(--c-blue)">$15,00</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-label">Claude Opus 4.6</div>
+        <div class="cost-bar-wrap"><div class="cost-bar" data-width="100" style="background:var(--c-red)"></div></div>
+        <div class="cost-val" style="color:var(--c-red)">$25,00</div>
+      </div>
+      <div class="callout callout-tip" style="margin-top:10px">
+        <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="callout-text">O M2.5 custa <strong>1/20 do Opus 4.6</strong> por token de saída. Para 100 tarefas/dia com volume médio de tokens, a diferença pode passar de <strong>$4.500/mês</strong>. Fonte: preços oficiais das APIs em fevereiro de 2026.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SEGURANÇA ════════ -->
+<div class="divider"></div>
+<section id="seguranca" class="sec-header reveal">
+  <div class="sec-sup">Segurança</div>
+  <h2>Como usar o MaxClaw de forma segura</h2>
+  <p class="sec-desc">Toda ferramenta poderosa exige cuidado proporcional. Aqui estão as práticas essenciais para proteger você, seus clientes e seu negócio.</p>
+
+  <div class="card-stack">
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Onde ficam seus dados? Entenda a infraestrutura</div><div class="xcard-sub">O que acontece quando você envia uma mensagem ou arquivo ao MaxClaw</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Quando você envia uma mensagem ou documento ao MaxClaw, esses dados transitam pelos servidores da <strong>MiniMax</strong> — uma empresa chinesa listada na Bolsa de Hong Kong desde janeiro de 2026, com receita recorrente anual acima de US$150 milhões. Os dados são processados na infraestrutura de nuvem deles para gerar a resposta e armazenar a memória do agente.</p>
+        <p><strong>O que isso significa na prática:</strong> seus dados saem do Brasil e vão para servidores no exterior. Isso não é necessariamente um problema — Google, Microsoft e Amazon fazem o mesmo. Mas é fundamental que você saiba disso para tomar decisões informadas sobre o que envia.</p>
+        <div class="callout callout-warn">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="callout-text"><strong>Regra de ouro:</strong> Nunca envie ao MaxClaw dados que você não enviaria por e-mail para um fornecedor internacional. Se o dado é sensível demais para e-mail, é sensível demais para o MaxClaw.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">O que enviar e o que NÃO enviar ao agente</div><div class="xcard-sub">Guia prático de classificação de dados para profissionais</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p><strong style="color:var(--c-green)">Pode enviar sem preocupação:</strong></p>
+        <ul class="bl">
+          <li>Pesquisas sobre legislação, jurisprudência pública, normas e regulamentos</li>
+          <li>Rascunhos de textos genéricos (posts, artigos, e-mails) sem dados de terceiros</li>
+          <li>Perguntas sobre conceitos técnicos, estratégia ou planejamento</li>
+          <li>Modelos e templates genéricos (contratos-padrão, checklists, formulários)</li>
+          <li>Dados públicos de empresas (CNPJ, razão social, informações de sites)</li>
+        </ul>
+        <p style="margin-top:14px"><strong style="color:var(--c-gold)">Envie com cautela (anonimize antes):</strong></p>
+        <ul class="bl">
+          <li>Contratos com dados de clientes — substitua nomes reais por "[CLIENTE A]", CPFs por "000.000.000-00"</li>
+          <li>Petições ou peças processuais — remova números de processo, nomes das partes e dados pessoais</li>
+          <li>Planilhas financeiras — remova identificadores de clientes antes de enviar</li>
+        </ul>
+        <p style="margin-top:14px"><strong style="color:var(--c-red)">NUNCA envie:</strong></p>
+        <ul class="bl">
+          <li>CPFs, RGs ou documentos de identidade de clientes reais</li>
+          <li>Prontuários médicos ou dados de saúde identificáveis</li>
+          <li>Senhas, tokens de API, chaves de acesso ou credenciais</li>
+          <li>Dados financeiros identificáveis (extratos bancários de clientes, declarações de IR)</li>
+          <li>Processos judiciais sob sigilo ou segredo de justiça</li>
+          <li>Dados de menores de idade</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">LGPD e transferência internacional de dados</div><div class="xcard-sub">O que a lei brasileira exige quando dados pessoais saem do país</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>A LGPD (Lei 13.709/2018, art. 33) permite a transferência internacional de dados pessoais quando há consentimento do titular ou quando o país de destino oferece proteção adequada. A China tem legislação própria de proteção de dados (PIPL), mas a ANPD ainda não reconheceu formalmente a adequação.</p>
+        <p><strong>Na prática, para seu escritório ou empresa:</strong></p>
+        <ul class="bl">
+          <li>Se você usa o MaxClaw apenas para pesquisas, geração de textos genéricos e tarefas internas sem dados de terceiros: não há implicação direta com a LGPD</li>
+          <li>Se você pretende processar dados pessoais de clientes no MaxClaw: precisa de base legal (como consentimento informado) e deve documentar essa transferência no seu Relatório de Impacto (RIPD)</li>
+          <li>A opção mais segura para dados sensíveis é usar o <strong>OpenClaw auto-hospedado</strong> (dados ficam no seu servidor) ou anonimizar completamente antes de enviar</li>
+        </ul>
+        <div class="callout callout-info">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+          <div class="callout-text"><strong>Dica para advogados:</strong> A mesma lógica se aplica ao uso de ChatGPT, Claude ou qualquer IA em nuvem. O MaxClaw não é mais nem menos seguro nesse aspecto — todos processam dados em servidores externos. A diferença é que servidores do ChatGPT ficam nos EUA, e os do MaxClaw em servidores da MiniMax (China/global).</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Como evitar que o agente cause problemas no seu negócio</div><div class="xcard-sub">Configurações de segurança que todo profissional deve fazer</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>O MaxClaw usa modelos de IA que podem gerar informações plausíveis mas incorretas (chamado de "alucinação"). Para evitar problemas:</p>
+        <p><strong>1. Defina limites claros nas instruções:</strong></p>
+        <ul class="bl">
+          <li>Advogados: instrua que o agente "NUNCA forneça opinião jurídica, parecer ou conselho legal ao cliente — apenas colete informações"</li>
+          <li>Médicos: instrua que "NUNCA sugira diagnósticos, medicamentos ou tratamentos — apenas faça triagem administrativa"</li>
+          <li>Contadores: instrua que "NUNCA prometa prazos de entrega ou valores de impostos — apenas colete documentos e agende"</li>
+        </ul>
+        <p><strong>2. Revise TUDO antes de usar com clientes:</strong></p>
+        <ul class="bl">
+          <li>Peças jurídicas geradas pelo agente são rascunhos — a responsabilidade técnica é sempre do profissional habilitado</li>
+          <li>Pesquisas de jurisprudência devem ser conferidas no site do tribunal — o agente pode citar acórdãos que não existem</li>
+          <li>Cálculos financeiros devem ser verificados manualmente antes de apresentar ao cliente</li>
+        </ul>
+        <p><strong>3. Monitore as conversas do agente:</strong></p>
+        <ul class="bl">
+          <li>Acesse o painel do MaxClaw periodicamente para revisar o que o agente respondeu aos seus clientes</li>
+          <li>Nas primeiras semanas, revise 100% das interações. Depois, amostragens regulares</li>
+          <li>Configure alertas para palavras-chave críticas (ex.: "processo", "urgente", "reclamação")</li>
+        </ul>
+        <div class="callout callout-tip">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="callout-text"><strong>Regra prática:</strong> Trate o MaxClaw como um estagiário muito capaz — ele faz o trabalho pesado, mas a revisão e a assinatura são sempre suas.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Checklist de segurança antes de colocar no ar</div><div class="xcard-sub">7 verificações para fazer antes de conectar o agente ao WhatsApp</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <ul class="bl">
+          <li><strong>1.</strong> As instruções incluem explicitamente o que o agente NÃO deve fazer?</li>
+          <li><strong>2.</strong> Você definiu que o agente deve dizer "vou consultar o responsável" quando não souber responder, em vez de inventar?</li>
+          <li><strong>3.</strong> O agente informa ao cliente que ele está conversando com uma inteligência artificial (e não com um humano)?</li>
+          <li><strong>4.</strong> Você testou o agente com perguntas difíceis, provocativas ou fora do escopo antes de liberar para clientes reais?</li>
+          <li><strong>5.</strong> Os dados pessoais de clientes estão protegidos (anonimizados ou não enviados ao agente)?</li>
+          <li><strong>6.</strong> Existe um canal fácil para o cliente falar diretamente com um humano se quiser?</li>
+          <li><strong>7.</strong> Você tem backup local de documentos e pesquisas importantes gerados pelo agente?</li>
+        </ul>
+        <div class="callout callout-ok">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="callout-text">Se respondeu "sim" para todos os 7 itens, seu agente está pronto para operar com segurança.</div>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ MEGA COMPARATIVO ════════ -->
+<div class="divider"></div>
+<section id="comparativo" class="sec-header reveal">
+  <div class="sec-sup">Comparativo Completo</div>
+  <h2>MaxClaw vs Modelos de IA vs Agentes Autônomos</h2>
+  <p class="sec-desc">Comparação com dados verificados de fevereiro/março de 2026. Preços por 1 milhão de tokens, baseados nas páginas oficiais de cada provedor.</p>
+
+  <div class="card-stack">
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Comparação de Modelos de IA (o "cérebro" por trás das ferramentas)</div><div class="xcard-sub">MiniMax M2.5 · Claude Opus 4.6 · GPT-5.2 · Gemini 3.1 Pro — Preço, velocidade e inteligência</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Estes são os <strong>modelos de linguagem</strong> — os "cérebros" que geram as respostas. O MaxClaw usa o M2.5. Os concorrentes usam os outros.</p>
+        <div class="table-wrap" style="margin-top:12px">
+          <table>
+            <thead><tr><th>Modelo</th><th>Empresa</th><th>Entrada / 1M tokens</th><th>Saída / 1M tokens</th><th>Contexto</th><th>SWE-Bench</th></tr></thead>
+            <tbody>
+              <tr><td><strong>MiniMax M2.5</strong></td><td>MiniMax</td><td><span class="pill pill-g">$0,30</span></td><td><span class="pill pill-g">$1,20</span></td><td>200K</td><td>80,2%</td></tr>
+              <tr><td>Gemini 3.1 Pro</td><td>Google</td><td><span class="pill pill-y">$2,00</span></td><td><span class="pill pill-y">$12,00</span></td><td>1M</td><td>80,6%</td></tr>
+              <tr><td>GPT-5.2</td><td>OpenAI</td><td><span class="pill pill-y">$1,75</span></td><td><span class="pill pill-y">$14,00</span></td><td>200K</td><td>~80%</td></tr>
+              <tr><td>Claude Sonnet 4.6</td><td>Anthropic</td><td><span class="pill pill-y">$3,00</span></td><td><span class="pill pill-y">$15,00</span></td><td>200K</td><td>—</td></tr>
+              <tr><td>Claude Opus 4.6</td><td>Anthropic</td><td><span class="pill pill-r">$5,00</span></td><td><span class="pill pill-r">$25,00</span></td><td>200K–1M</td><td>80,8%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-info" style="margin-top:12px">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+          <div class="callout-text"><strong>Para leigos:</strong> O SWE-Bench mede a capacidade de resolver problemas complexos de código. Os quatro melhores modelos estão todos entre 80-81% — ou seja, a qualidade é muito próxima. A diferença real está no <strong>preço</strong>: o M2.5 custa 1/20 do Opus e 1/10 do Gemini e GPT-5.2 por token de saída.</div>
+        </div>
+        <div class="callout callout-warn" style="margin-top:8px">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="callout-text"><strong>Honestidade:</strong> Para tarefas que exigem raciocínio profundo e nuance máxima (análises jurídicas complexas, pesquisa científica avançada), o Claude Opus 4.6 e o Gemini 3.1 Pro ainda são referências superiores. O M2.5 brilha em tarefas de negócios do dia a dia onde volume e custo importam mais que perfeição absoluta.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Comparação de Plataformas de Agentes Autônomos</div><div class="xcard-sub">MaxClaw · Manus AI · Claude (Anthropic) · ChatGPT Operator · Gemini Agent</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p>Aqui comparamos <strong>plataformas de agentes autônomos</strong> — ou seja, ferramentas que executam tarefas de forma contínua, não apenas respondem perguntas.</p>
+        <div class="table-wrap" style="margin-top:12px">
+          <table>
+            <thead><tr><th>Critério</th><th>MaxClaw</th><th>Manus AI</th><th>Claude Cowork</th><th>ChatGPT Operator</th></tr></thead>
+            <tbody>
+              <tr><td>Preço mensal</td><td><span class="pill pill-g">$19/mês</span></td><td><span class="pill pill-r">$39+/mês</span></td><td><span class="pill pill-y">$20/mês (Pro)</span></td><td><span class="pill pill-y">$20/mês (Plus)</span></td></tr>
+              <tr><td>Modelo de IA</td><td>MiniMax M2.5</td><td>Claude, Qwen (variável)</td><td>Claude Opus/Sonnet</td><td>GPT-5.2</td></tr>
+              <tr><td>Always-on (24/7)</td><td><span class="pill pill-g">Sim</span></td><td><span class="pill pill-g">Sim (background)</span></td><td><span class="pill pill-r">Não — precisa estar aberto</span></td><td><span class="pill pill-r">Não — precisa estar aberto</span></td></tr>
+              <tr><td>WhatsApp / Telegram</td><td><span class="pill pill-g">Sim, nativo</span></td><td><span class="pill pill-r">Não</span></td><td><span class="pill pill-r">Não</span></td><td><span class="pill pill-r">Não</span></td></tr>
+              <tr><td>Memória longo prazo</td><td><span class="pill pill-g">200K+ tokens</span></td><td><span class="pill pill-g">Sim</span></td><td><span class="pill pill-y">Limitada</span></td><td><span class="pill pill-y">Limitada</span></td></tr>
+              <tr><td>Multi-agente</td><td><span class="pill pill-g">Subagentes nativos</span></td><td><span class="pill pill-g">Sim</span></td><td><span class="pill pill-r">Não</span></td><td><span class="pill pill-r">Não</span></td></tr>
+              <tr><td>Desktop (arquivos locais)</td><td><span class="pill pill-g">macOS + Windows</span></td><td><span class="pill pill-r">Não</span></td><td><span class="pill pill-y">macOS apenas</span></td><td><span class="pill pill-r">Não</span></td></tr>
+              <tr><td>Deploy em 1 clique</td><td><span class="pill pill-g">Sim (~10s)</span></td><td><span class="pill pill-g">Sim</span></td><td><span class="pill pill-r">N/A — não é agente cloud</span></td><td><span class="pill pill-r">N/A — não é agente cloud</span></td></tr>
+              <tr><td>Cobrança previsível</td><td><span class="pill pill-g">Fixa por mês</span></td><td><span class="pill pill-r">Créditos (imprevisível)</span></td><td><span class="pill pill-g">Fixa por mês</span></td><td><span class="pill pill-g">Fixa por mês</span></td></tr>
+              <tr><td>Qualidade do modelo</td><td><span class="pill pill-y">Muito boa</span></td><td><span class="pill pill-g">Excelente (usa Claude)</span></td><td><span class="pill pill-g">Excelente</span></td><td><span class="pill pill-g">Excelente</span></td></tr>
+              <tr><td>Ideal para</td><td>Automação + canais de chat</td><td>Projetos complexos autônomos</td><td>Trabalho desktop avançado</td><td>Navegação web autônoma</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout callout-tip" style="margin-top:12px">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="callout-text"><strong>Resumo para decisão rápida:</strong> Se você precisa de um agente <strong>disponível 24h no WhatsApp ou Telegram</strong>, o MaxClaw é a única opção nesta lista que faz isso nativamente. Se precisa de <strong>máxima qualidade de raciocínio</strong> para análises pontuais, use Claude ou ChatGPT diretamente. Se precisa de <strong>execução autônoma de projetos complexos</strong> (criar sites, pesquisa profunda), considere o Manus — mas prepare-se para gastar mais.</div>
+        </div>
+        <div class="callout callout-info" style="margin-top:8px">
+          <div class="callout-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+          <div class="callout-text"><strong>Sobre o Manus AI:</strong> Em dezembro de 2025, a Meta (Facebook) anunciou a aquisição do Manus por estimados US$2–3 bilhões. O serviço continua operando, mas o futuro da plataforma como produto independente é incerto. O modelo de créditos também é criticado por ser imprevisível — tarefas complexas podem consumir 500-900 créditos sem aviso prévio.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="xcard" data-card>
+      <div class="xcard-head">
+        <div class="xcard-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="xcard-info"><div class="xcard-title">Quando usar o quê — Guia de decisão prático</div><div class="xcard-sub">A ferramenta certa para cada tipo de tarefa no seu dia a dia</div></div>
+        <div class="xcard-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="xcard-body"><div class="xcard-inner">
+        <p><strong>Use o MaxClaw quando:</strong></p>
+        <ul class="bl">
+          <li>Precisa de atendimento automático 24h no WhatsApp, Telegram, Slack ou Discord</li>
+          <li>Quer automação de triagem, agendamento ou coleta de dados com clientes</li>
+          <li>Precisa de briefings e pesquisas recorrentes (diárias/semanais)</li>
+          <li>Volume de tarefas alto e custo por tarefa precisa ser baixo</li>
+          <li>Não quer se preocupar com servidores, manutenção ou infraestrutura</li>
+        </ul>
+        <p style="margin-top:14px"><strong>Use Claude, ChatGPT ou Gemini diretamente quando:</strong></p>
+        <ul class="bl">
+          <li>Precisa de análise profunda e pontual de alta qualidade (ex.: análise de contrato complexo)</li>
+          <li>Está fazendo trabalho criativo que exige o melhor modelo disponível</li>
+          <li>Precisa de interação humana direta com o chat (reflexões, brainstorming)</li>
+          <li>A tarefa é única e não se repete (não justifica configurar um agente)</li>
+        </ul>
+        <p style="margin-top:14px"><strong>Use o OpenClaw auto-hospedado quando:</strong></p>
+        <ul class="bl">
+          <li>Processa dados altamente sensíveis que não podem sair do seu servidor (saúde, sigilo judicial)</li>
+          <li>Tem equipe de TI para instalar, configurar e manter</li>
+          <li>Precisa usar um modelo de IA diferente do M2.5 (ex.: Claude, GPT via API)</li>
+          <li>Compliance exige controle total sobre o local de armazenamento dos dados</li>
+        </ul>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<div class="divider"></div>
+<section id="faq" class="sec-header reveal">
+  <div class="sec-sup">Dúvidas e Objeções</div>
+  <h2>Perguntas frequentes</h2>
+  <p class="sec-desc">Respondendo com honestidade — incluindo os pontos negativos reais.</p>
+
+  <div id="faqContainer">
+
+    <div class="faq-item" data-faq>
+      <div class="faq-q"><div class="faq-q-mark">?</div><div class="faq-q-text">Meus dados e os de meus clientes ficam seguros? É compatível com a LGPD?</div><div class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Esta é a questão mais importante e a resposta honesta é: <strong>depende do tipo de dado que você vai processar.</strong></p>
+        <p>Ao usar o MaxClaw, as mensagens e arquivos que você envia transitam pelos servidores da MiniMax — empresa de origem chinesa com operações globais. Para a LGPD (Lei Geral de Proteção de Dados, Lei 13.709/2018), isso configura transferência internacional de dados, o que é permitido mas exige avaliação.</p>
+        <p><strong>Seguro para:</strong> pesquisas abertas, triagem sem dados sensíveis, geração de textos genéricos, consultas sobre legislação pública.<br/>
+        <strong>Requer cautela:</strong> documentos com CPF de clientes, contratos com dados pessoais identificáveis, prontuários médicos, processos sigilosos.</p>
+        <p><strong>Solução prática:</strong> use o MaxClaw para tarefas de pesquisa e geração de rascunhos sem dados pessoais. Para análise de documentos com dados de clientes reais, considere o OpenClaw auto-hospedado ou anonimize os documentos antes de enviar.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item" data-faq>
+      <div class="faq-q"><div class="faq-q-mark">?</div><div class="faq-q-text">Preciso saber programar? Tem algum conhecimento técnico necessário?</div><div class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p><strong>Não.</strong> O MaxClaw foi criado especificamente para eliminar qualquer barreira técnica. O processo inteiro — criar conta, fazer deploy, conectar ao Telegram ou WhatsApp — é feito por uma interface visual com botões e formulários, sem nenhuma linha de código.</p>
+        <p>Para as personalizações mais avançadas (criar Experts customizados, configurar subagentes para fluxos complexos), existe documentação em formato de guia visual no próprio painel. Se você consegue usar o Gmail ou o WhatsApp Web, você consegue usar o MaxClaw.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item" data-faq>
+      <div class="faq-q"><div class="faq-q-mark">?</div><div class="faq-q-text">E se a MiniMax sair do ar ou encerrar o serviço? Perco tudo?</div><div class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Esta é uma limitação real e honesta do modelo em nuvem. Se a MiniMax tiver uma interrupção técnica, seu agente fica fora do ar até ser restabelecido. Se você cancelar a assinatura, perde acesso ao agente.</p>
+        <p><strong>Para contextualizar o risco:</strong> a MiniMax abriu capital na Bolsa de Hong Kong em janeiro de 2026 e reportou receita recorrente anual acima de US$150 milhões em fevereiro de 2026 — não é uma startup frágil. Mas qualquer serviço em nuvem tem risco de interrupção.</p>
+        <p><strong>Como se proteger:</strong> exporte e salve localmente qualquer pesquisa ou documento importante gerado pelo agente. Use o MaxClaw para tarefas que, se interrompidas, causam inconveniência — não para processos absolutamente críticos sem alternativa.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item" data-faq>
+      <div class="faq-q"><div class="faq-q-mark">?</div><div class="faq-q-text">O agente pode dar informações erradas e criar problemas no meu negócio?</div><div class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Sim — se mal configurado e sem supervisão, isso é um risco real. Modelos de linguagem podem gerar informações plausíveis mas incorretas (tecnicamente chamado de "alucinação") ou interpretar situações de forma equivocada.</p>
+        <p><strong>Como mitigar:</strong> instrua o agente explicitamente sobre o que ele <em>não</em> deve fazer. Para advogados: nunca dar opinião jurídica diretamente a clientes. Para médicos: nunca dar orientações clínicas. Para contadores: nunca prometer prazos sem validação humana.</p>
+        <p>Trate o agente como um estagiário altamente capaz que precisa de supervisão — não como um especialista autônomo com responsabilidade técnica própria.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item" data-faq>
+      <div class="faq-q"><div class="faq-q-mark">?</div><div class="faq-q-text">O que é o GPT-5.2 que vocês mencionam? É o mesmo que o ChatGPT?</div><div class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>O ChatGPT é o produto (o aplicativo), enquanto o GPT-5.2 é o modelo de IA que roda por dentro dele — desenvolvido pela empresa OpenAI. Em fevereiro de 2026, a OpenAI aposentou os modelos mais antigos como o GPT-4o, e o GPT-5.2 passou a ser o padrão no ChatGPT.</p>
+        <p>No comparativo de custo deste guia, usamos o GPT-5.2 como referência de mercado porque é o modelo atual da OpenAI. O MiniMax M2.5 entrega qualidade similar em tarefas de negócios do dia a dia, mas a um custo significativamente menor por uso.</p>
+        <p>Para tarefas onde a máxima qualidade é essencial, o Claude Opus 4.6 (da Anthropic) ainda é uma referência de excelência. O MaxClaw não substitui esses modelos para casos de alto nível — complementa, sendo ideal para volume e automação.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item" data-faq>
+      <div class="faq-q"><div class="faq-q-mark">?</div><div class="faq-q-text">O MaxClaw é diferente do ChatGPT ou Claude que já uso no navegador?</div><div class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>São propostas completamente diferentes. O ChatGPT e o Claude no navegador são <strong>chatbots de IA</strong> — você abre, faz uma pergunta, ele responde, você fecha. Cada sessão começa do zero, sem memória do que foi dito antes.</p>
+        <p>O MaxClaw é um <strong>agente autônomo e persistente</strong>: fica rodando continuamente, tem memória de longo prazo, pode receber tarefas programadas (ex.: enviar briefing todo dia às 7h), vive no seu WhatsApp ou Telegram e pode agir por conta própria sem você precisar abrir nenhuma aba.</p>
+        <p>Use o chat (Claude, ChatGPT) para reflexões e análises pontuais de alta qualidade. Use o MaxClaw para automações, triagem, atendimentos e tarefas recorrentes.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item" data-faq>
+      <div class="faq-q"><div class="faq-q-mark">?</div><div class="faq-q-text">O agente funciona bem em português? Entende termos técnicos do Brasil?</div><div class="faq-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p><strong>Sim, o M2.5 funciona bem em português brasileiro</strong> e entende terminologia técnica local — termos jurídicos (réplica, agravo, habeas corpus, PGFN), contábeis (SPED, DCTF, simples nacional), imobiliários (ITBI, escritura, cartório de registro) e médicos (CRM, prontuário, TUSS).</p>
+        <p>Como qualquer modelo multilíngue treinado globalmente, pode ter levemente mais nuance em inglês para termos muito específicos. Mas para a grande maioria das aplicações em português, a qualidade é muito satisfatória.</p>
+        <p><strong>Dica prática:</strong> escreva seus comandos (prompts) em português claro e direto. Quanto mais específica a instrução, melhor a resposta — em qualquer idioma.</p>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ CTA FINAL ════════ -->
+<div class="cta-final reveal">
+  <div class="cta-final-sup">Próximo passo</div>
+  <h3>Quer um time de<br/><span>multi-agentes personalizados</span><br/>trabalhando no seu negócio?</h3>
+  <p>A Super Inteligênc[IA] projeta, configura e entrega sistemas de agentes autônomos sob medida para escritórios, clínicas, imobiliárias e empresas de serviços. Do briefing ao agente no ar.</p>
+  <a href="https://wa.me/message/NSPS5ULND5FNP1" target="_blank" class="btn-cta-final">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    Fale com o time Super Inteligênc[IA]
+  </a>
+  <div class="cta-note">Resposta em até 2 horas em dias úteis</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-brand">Super Inteligênc<strong>[IA]</strong> · @marcilio.drummond</div>
+  <div class="f-links">
+    <a href="https://agent.minimax.io/max-claw" target="_blank">MaxClaw</a>
+    <a href="https://docs.openclaw.ai" target="_blank">Docs OpenClaw</a>
+    <a href="https://wa.me/message/NSPS5ULND5FNP1" target="_blank">Contato</a>
+  </div>
+</footer>
+
+</div><!-- /page -->
+
+<script>
+/* Progress */
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  prog.style.width=Math.min(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100,100)+'%';
+},{passive:true});
+
+/* Nav toggle */
+document.getElementById('navToggle').addEventListener('click',function(){
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* Expandable cards — one open at a time */
+document.querySelectorAll('[data-card]').forEach(card=>{
+  card.querySelector('.xcard-head').addEventListener('click',()=>{
+    const isOpen=card.classList.contains('open');
+    document.querySelectorAll('[data-card].open').forEach(c=>{
+      c.classList.remove('open');
+      c.querySelector('.xcard-body').style.maxHeight='0';
+    });
+    if(!isOpen){
+      card.classList.add('open');
+      card.querySelector('.xcard-body').style.maxHeight=card.querySelector('.xcard-body').scrollHeight+200+'px';
+    }
+  });
+});
+
+/* FAQ accordion */
+document.querySelectorAll('[data-faq]').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('[data-faq].open').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight='0';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      item.querySelector('.faq-a').style.maxHeight=item.querySelector('.faq-a').scrollHeight+60+'px';
+    }
+  });
+});
+
+/* Scroll reveal */
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*50);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* Cost bars animated */
+const barObs=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const bar=entry.target;
+      const w=bar.getAttribute('data-width')+'%';
+      setTimeout(()=>{bar.style.width=w;},200);
+      barObs.unobserve(bar);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.cost-bar[data-width]').forEach(bar=>barObs.observe(bar));
+
+/* Open first card */
+const firstCard=document.querySelector('[data-card]');
+if(firstCard){
+  firstCard.classList.add('open');
+  firstCard.querySelector('.xcard-body').style.maxHeight='800px';
+}
+</script>
+</body>
+</html>
